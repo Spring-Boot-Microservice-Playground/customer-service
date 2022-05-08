@@ -1,7 +1,5 @@
 package com.ilyas.customer.service;
 
-import java.util.List;
-
 import com.ilyas.customer.model.Customer;
 import com.ilyas.customer.repository.CustomerRepository;
 
@@ -15,10 +13,13 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
     
     private CustomerRepository customerRepository;
+    // private RestTemplate restTemplate;
     
     @Autowired
+    // public CustomerService(CustomerRepository customerRepository, RestTemplate restTemplate) {
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
+        // this.restTemplate = restTemplate;
     }
 
     public Slice<Customer> findAllCustomersByNameLike(String name, int pageSize) throws Exception {
@@ -28,12 +29,7 @@ public class CustomerService {
     }
 
     public Customer creatCustomer(Customer customer) throws Exception {
-        List<Customer> existingCustomers = customerRepository.findByName(customer.getName());
-        if(existingCustomers.isEmpty()){
-            Customer result = customerRepository.save(customer);
-            return result;
-        } else {
-            return null;
-        }
+        Customer result = customerRepository.save(customer);
+        return result;
     }
 }

@@ -42,12 +42,9 @@ public class CustomerController {
     public ResponseEntity<String> createNewCustomer(@RequestBody Customer customer){
         try {
             Customer result = customerService.creatCustomer(customer);
-            if(result != null){
-                return ResponseEntity.ok("Customer Created");
-            }
-            return ResponseEntity.badRequest().body("Customer Already Exist");
+            return ResponseEntity.ok(result.toString());
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); 
+            return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR); 
         }
     }
 }

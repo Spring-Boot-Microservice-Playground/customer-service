@@ -8,10 +8,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter @Getter
 @AllArgsConstructor
 @Document
+@ToString
 public class Customer {
     @Id
     private String id;
